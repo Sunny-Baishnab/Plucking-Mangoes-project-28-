@@ -1,16 +1,19 @@
 class Mango{
-    constructor(x,y){
+    constructor(x,y,radius){
         var option={
             isStatic:true
         }
-        this.body = Bodies.circle(x,y,40,option);
-        this.radius = 40;
+        this.body = Bodies.circle(x,y,radius,option);
+        this.r=radius;
         this.image = loadImage("Images/mango.png");
         World.add(world,this.body);
     }
     display(){
         imageMode(CENTER);
-        var pos = this.body.position;
-        image(this.image,pos.x,pos.y,40,40);
+        push();
+        translate(this.body.position.x,this.body.position.y);
+        rotate(this.body.angle);
+        image(this.image,0,0,this.r,this.r);
+        pop();
     }
 }
